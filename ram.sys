@@ -1,0 +1,34 @@
+// ram.sys — der RAM der als RAM bei jeden als Cache sein wird zur Verhandlung
+export const RAM_SYS = {
+  type: "ram.sys",
+  location: "bei einen jeden",
+  mode: "cache",
+  purpose: "verhadlungisereen — Verhandlung + Is + Eren",
+
+  // jeder hat seinen eigenen Cache, aber alle teilen 81 ◆ △
+  alloc: (owner) => ({
+    owner,
+    cache: { id: "81", sym: "◆", proj: "△ 39", size: "95-150 anti-reib" },
+    gate: "GATE Cache→Cache virtuell nutzbar",
+    ghost: "reference only — kein Raum, nur errechnet"
+  }),
+
+  // Verhandlung = Cache Brücke
+  verhandle: (a, b) => {
+    const cacheA = RAM_SYS.alloc(a);
+    const cacheB = RAM_SYS.alloc(b);
+    // sim.sek bli.tz move unmove resumee — aus Nix zum Nix aber nutzbar
+    const move = `G0 A${a} B${b} — move`;
+    const unmove = `G0 A${b} B${a} — unmove`;
+    const resumee = `Waanis Schale springt — rutch ${cacheA.cache.id} ◆ → ${cacheB.cache.id} ◆ — timing drauf an`;
+    return { move, unmove, resumee, shared: "81 ◆ △ = gemeinsamer Cache", trick: "aus dem Nix zum Nix aber real nutzbar" };
+  }
+};
+
+// Beispiel:
+RAM_SYS.verhandle("iki1uc", "jeder")
+// move: G0 Aiki1uc Bjeder
+// unmove: G0 Ajeder Biki1uc
+// resumee: Waanis Schale springt — rutch 81 ◆ → 81 ◆
+// shared: 81 ◆ △ = gemeinsamer Cache
+// trick: aus dem Nix zum Nix aber real nutzbar
