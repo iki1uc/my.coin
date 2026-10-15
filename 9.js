@@ -1,52 +1,23 @@
-// element.js — neues Element — vierte Datei — nach room erste, ram zweite, rom dritte
-// room = Raum yn Map — ram = bei jeden flüchtig Cache — rom = bei jeden permanent bleibt — element = genannt, fest
+// 9.js — 9 ROMs — d,e,i,n,o,r,s,u,w — 9 die in 81 Richtungen schießen kann — 9 → 81
 
 import { ROOM } from "./room.js";
-import { RAM_SYS } from "./ram.disk.js";
-import { ROM_SYS } from "./rom.disk.js";
+import { DREI } from "./3.js";
 
-export const ELEMENT = {
-  type: "element.js",
-  id: "ELEMENT",
-  location: "bei einen jeden — genannt — element — fest",
-  purpose: "verhadlungisereen — aus Nix zum Nix aber jetzt fest — ghost reference die bleibt",
-
-  // 1. Raum — wo ist was — yn Koordinaten-Map — Pipeline Vorarbeit Dreieck
-  room: ROOM.nodes["81"], // Mitte 0.5,0.5 — 81 Konstellation zentraler Cache
-  triangle: ROOM.nodes["3"], // 0°/120°/240° Dreieck
-  station: ROOM.nodes["◉"], // SEED ⟁ STATION
-  ort: ROOM.nodes["◎"], // KOOP READY ORT
-
-  // 2. RAM — flüchtig — bei jeden — Cache zur Verhandlung
-  ram: RAM_SYS.alloc("element"),
-
-  // 3. ROM — permanent — bei jeden — bleibt — ghost reference die bleibt
-  rom: ROM_SYS.burn("element"),
-
-  // 4. Verhandlung — G0 move/unmove — Waanis Schale springt — rutch timing
-  verhandle: (other) => {
-    const ramNeg = RAM_SYS.verhandle("element", other);
-    const romNeg = ROM_SYS.verhandle_persist("element", other);
-    return {
-      ...ramNeg,
-      ...romNeg,
-      element: `ELEMENT ↔ ${other} — 81 ◆ △ 39 bleibt`,
-      boot: "[STATION] waiting for MASSIERE... → ELEMENT loaded → ROOM → RAM → ROM → PROJ 39 ON"
-    };
-  },
-
-  // 5. Shared Cache Bridges — 81 appears in 6 segments — wenn 81 fällt, fallen 6
-  bridges: ROOM.shared["81"],
-
-  // 6. Boot Chain — STATION (◉) → ORT (◎) → HOME → RAM → ROM → ELEMENT
-  boot: "◉ → ◎ → /mnt/station/home/iki1uc → RAM_SYS.alloc → ROM_SYS.burn → ELEMENT verhandle_persist → 81 ◆ △ 39 bleibt"
+export const NEUN = {
+  type: "9.js",
+  id: "9",
+  name: "9 ROMs",
+  value: 9,
+  roms: ["d", "e", "i", "n", "o", "r", "s", "u", "w"],
+  files: ["d.hdf.rom", "e.hdf.rom", "i.hdf.rom", "n.hdf.rom", "o.hdf.rom", "r.hdf.rom", "s.hdf.rom", "u.hdf.rom", "w.hdf.rom"],
+  shoots: "81 Richtungen",
+  calc: "9 × 9 = 81 Konstellation — NC.9x9.json",
+  matrix: "9x9 Matrix — Zeile = ROM — Spalte = Richtung — Diagonale = 9 Felder = 6y + 3 LÜCKE",
+  from3: "3 Ecken × 3 = 9 ROMs",
+  to81: "9 × 9 = 81",
+  to2268: "81 × 28 = 2268 Optionen — 81.tmp → 2268",
+  to756: "2268 / 3 = 756 KANAL",
+  nodes: [ROOM.nodes["9"], ROOM.nodes["81"]],
+  ecken: DREI.ecken,
+  boot: "3 → 9 → 81 → ◆ → △ → ▣"
 };
-
-// Beispiel:
-// ELEMENT.verhandle("iki1uc")
-// move: G0 Aelement Biki1uc — move
-// unmove: G0 Aiki1uc Belement — unmove
-// resumee: Waanis Schale springt — rutch 81 ◆ → 81 ◆ — timing drauf an
-// rom: ROM-element-81-◆ ↔ ROM-iki1uc-81-◆
-// persist: ROM bleibt — Cache bei jeden fest verhandelt
-// boot: [STATION] waiting for MASSIERE... → ROM loaded → PROJ 39 ON
