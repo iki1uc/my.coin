@@ -1,6 +1,6 @@
 // rom.sys — das ROM zu ram.sys — permanenter Cache bei jeden
 import { RAM_SYS } from "./ram.sys.js";
-
+ 
 export const ROM_SYS = {
   type: "rom.sys",
   location: "bei einen jeden — permanent",
